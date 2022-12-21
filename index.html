@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="styles/form.css">
+
+</head>
+
+<body>
+    <section class="main-section">
+        <header class="form-title">
+            The Weather Form
+        </header>
+        <form id="weather-form" class="form-class">
+
+            <select name="place" required>
+                <option value hidden selected disabled>
+                    --Select Place--
+                </option>
+                <option value="Tel Aviv">Tel Aviv</option>
+                <option value="Haifa">Haifa</option>
+                <option value="Rehovot">Rehovot</option>
+                <option value="Jerusalem">Jerusalem</option>
+
+            </select>
+
+            <div class="two-inputs">
+                <div class="date-input">
+                    <label>Enter date from</label>
+                    <input id="date-from" type="date" name="dateFrom" min="2022-12-19" max="2023-01-03" required>
+                </div>
+                <div class="date-input">
+                    <label>Enter date to</label>
+                    <input id="date-to" type="date" name="dateTo" min="2022-12-19" max="2023-01-03" required>
+                </div>
+            </div>
+
+            <div class="two-inputs">
+                <input id="hours-from" name="hoursFrom" type="number" placeholder="Enter hours from" required>
+                <input id="hours-to" name="hoursTo" type="number" placeholder="Enter hours to" required>
+            </div>
+
+            <div class="buttons">
+                <button type="submit">Show</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+        <p id="error-message" class="error-message"></p>
+        <ul id="temperature-list" class="temperature-place"></ul>
+    </section>
+    <script src="src/main.js" type="module"></script>
+</body>
+
+</html>
