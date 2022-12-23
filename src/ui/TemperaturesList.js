@@ -1,22 +1,24 @@
 export class TemperaturesList {
-    
-    #listElement;
-    constructor(idList) {
+    #cityElement
+    #listElement
+    constructor(idList, idCity) {
+        this.#cityElement = document.getElementById(idCity);
         this.#listElement = document.getElementById(idList);
     }
     showTemperatures(dataArray) {
-        //TODO
-        //{city, objects: [{date, hour, temperature}, ...]}
-        this.#listElement.innerHTML = getWeather(dataArray);
+             this.#cityElement.innerHTML = dataArray.city;
+             this.#listElement.innerHTML = getListItems(dataArray.objects)
+              
     }
-
 }
-function getWeather(dataAr) {
-    return dataAr.map(value => `<li class='weather-item-container'>
-        <p class='weather-item-paragraf'>Place: ${value.place}</p>
-        <p class='weather-item-paragraf'>Date: ${value.date}</p>
-        <p class="weather-item-paragraf">Hours: ${value.hour}</p>
-        <p class='weather-item-paragraf'>Temperature: ${value.temperature}</p>
-
-    </li >`).join('');
-} 
+function getListItems(data) {
+    return data.map(d =>
+        `<li class="item-class">
+              <div class="item-container">
+                 <p class="item-paragraph">Date: ${d.date} </p>
+                 <p class="item-paragraph">Hour: ${d.hour} </p>
+                 <p class="item-paragraph">Temperature: ${d.temperature}</p>
+                 
+              </div>
+          </li>`).join('');
+}

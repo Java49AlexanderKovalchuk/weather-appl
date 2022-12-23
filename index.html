@@ -6,52 +6,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
-    <link rel="stylesheet" href="styles/form.css">
-
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="shortcut icon" href="images/weather.png" type="image/x-icon">
 </head>
 
 <body>
-    <section class="main-section">
-        <header class="form-title">
-            The Weather Form
-        </header>
-        <form id="weather-form" class="form-class">
-
-            <select name="place" required>
-                <option value hidden selected disabled>
-                    --Select Place--
-                </option>
-                <option value="Tel Aviv">Tel Aviv</option>
-                <option value="Haifa">Haifa</option>
-                <option value="Rehovot">Rehovot</option>
-                <option value="Jerusalem">Jerusalem</option>
-
-            </select>
-
+    <section>
+        <form id="data_form" class="form-class">
+            <div class="one-input">
+                <select id="cities" name="city" required>
+                    <option value hidden selected disabled>
+                        --Select City--
+                    
+                </select>
+            </div>
             <div class="two-inputs">
-                <div class="date-input">
-                    <label>Enter date from</label>
-                    <input id="date-from" type="date" name="dateFrom" min="2022-12-19" max="2023-01-03" required>
+                <div class="date-label">
+                    <label>Enter Date-From</label>
+                    <input type="date" name="dateFrom" required id="date_from">
                 </div>
-                <div class="date-input">
-                    <label>Enter date to</label>
-                    <input id="date-to" type="date" name="dateTo" min="2022-12-19" max="2023-01-03" required>
+                <div class="date-label">
+                    <label>Enter Date-To</label>
+                    <input type="date" name="dateTo" required id="date_to">
                 </div>
             </div>
-
             <div class="two-inputs">
-                <input id="hours-from" name="hoursFrom" type="number" placeholder="Enter hours from" required>
-                <input id="hours-to" name="hoursTo" type="number" placeholder="Enter hours to" required>
+                <input type="number" name="hourFrom" required id="hour_from" placeholder="enter hour-from">
+                <input type="number" name="hourTo" required id="hour_to" placeholder="enter hour-to">
             </div>
-
+            <p id="error_message" class="error"></p>
             <div class="buttons">
-                <button type="submit">Show</button>
+                <button type="get temperature values">Submit</button>
                 <button type="reset">Reset</button>
             </div>
+            <header>
+                <h2 id="city" class="city-title"></h2>
+            </header>
+            <ul id="items-list" class="items-list">
+
+            </ul>
+
         </form>
-        <p id="error-message" class="error-message"></p>
-        <ul id="temperature-list" class="temperature-place"></ul>
     </section>
+   
     <script src="src/main.js" type="module"></script>
 </body>
 
