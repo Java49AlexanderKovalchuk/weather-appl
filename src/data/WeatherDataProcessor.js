@@ -45,20 +45,11 @@ export class WeatherDataProcessor {
         return { city: requestObject.city, objects };
     }
 
-    getCities(fn) {
-        const cities = this.#cityGeocodes.map(n => `<option value="${n.city}">${n.city}</option>`).join();
-        console.log(cities);
-        fn(cities);
+    getCities() {
+        return this.#cityGeocodes.map(el => el.city);
     }
-
-    getMinMaxDates(fnDates) {
-        const currentDate = new Date();
-        const date = currentDate.toISOString().substring(0, 10);
-        const day = currentDate.getDate();
-        currentDate.setDate(day + 17);
-        const objMinMaxDates = { minISODate: date, maxISODate: currentDate.toISOString().substring(0, 10) };
-        //console.log(objMinMaxDates);
-        fnDates(objMinMaxDates);
+    getDatesInteval() {
+        return 17;
     }
 
 }

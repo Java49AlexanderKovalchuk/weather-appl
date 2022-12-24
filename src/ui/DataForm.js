@@ -13,6 +13,8 @@ export class DataForm {
     #hourFrom;
     #hourTo;
     #citiesElement
+    #cities;
+    #objMinMaxDates;
     
     constructor (params) {
        this.#formElement = document.getElementById(params.idForm);
@@ -25,16 +27,12 @@ export class DataForm {
        this.onChangeDate();
        this.onChangeHours();
        this.#citiesElement = document.getElementById(params.idCities);
-       
+       this.#cities = params.cities;
+       this.#objMinMaxDates = params.minMaxDates;
+       this.addCitiesHTML(); 
+       this.addDatesHTML();
     }
-
-    addMinMaxDates(obj) {
-        this.#dateFromElement.min = obj.minISODate;
-        this.#dateFromElement.max = obj.maxISODate;
-        this.#dateToElement.min = obj.minISODate;
-        this.#dateToElement.max = obj.maxISODate;
-    }
-
+    
     addCitiesElement(cities) {
         this.#citiesElement.innerHTML += cities;
     }
@@ -52,14 +50,17 @@ export class DataForm {
 
         })
     }
+    
     onChangeDate() {
         this.#dateFromElement.addEventListener('change', this.dateHandler.bind(this));
         this.#dateToElement.addEventListener('change', this.dateHandler.bind(this));
     }
+    
     onChangeHours() {
         this.#hourFromElement.addEventListener('change', this.hourHandler.bind(this));
         this.#hourToElement.addEventListener('change', this.hourHandler.bind(this));
     }
+    
     dateHandler(event) {
         if (event.target == this.#dateFromElement) {
             if (this.#dateTo && this.#dateTo < this.#dateFromElement.value) {
@@ -77,6 +78,7 @@ export class DataForm {
             }
         }
     }
+    
     hourHandler(event) {
         const hour = event.target.value;
         if(hour < 0 || hour > 23) {
@@ -101,7 +103,17 @@ export class DataForm {
             }
         }
         }
-        
+
+    addCitiesHTML() {
+        this.#citiesElement.innerHTML += 
+        this.#cities.map(el => `<option value="${el}">${el}</option>`).join();
+    }
+    addDatesHTML() {
+            this.#dateFromElement.min = this.#objMinMaxDates.minISODate;
+            this.#dateFromElement.max = this.#objMinMaxDates.maxISODate;
+            this.#dateToElement.min = this.#objMinMaxDates.minISODate;
+            this.#dateToElement.max = this.#objMinMaxDates.maxISODate;
+        }
 }
 
  
